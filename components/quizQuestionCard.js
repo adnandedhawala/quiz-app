@@ -9,6 +9,7 @@ export const QuizQuestionCard = (props) => {
     title,
     id,
     getUserDetails,
+    correct_option,
     userDetails,
     question_id,
     option1,
@@ -36,17 +37,21 @@ export const QuizQuestionCard = (props) => {
 
   const handleSubmitanswer = async () => {
     setIsSubmitting(true);
+    const initialScore = userDetails.score || 0;
+    const newScore =
+      radioValue === correct_option ? initialScore + 1 : initialScore;
     await userTableReference.update([
       {
         id: userDetails.id,
         fields: {
           [question_id + "_answer"]: radioValue,
+          score: newScore,
         },
       },
     ]);
     setIsSubmitting(false);
     getUserDetails();
-    console.log(userDetails, radioValue);
+    console.log("initialScore", initialScore);
   };
 
   return (

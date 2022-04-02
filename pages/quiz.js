@@ -2,9 +2,11 @@ import Airtable from "airtable";
 import {
   Card,
   Col,
+  Empty,
   Layout,
   message,
   Radio,
+  Result,
   Row,
   Space,
   Spin,
@@ -55,7 +57,6 @@ const QuizPage = () => {
 
   const getUserDetails = async () => {
     setDisplayLoader(true);
-
     const user = JSON.parse(localStorage.getItem("user"));
     const aTData = await userBase
       .select({
@@ -165,28 +166,32 @@ const QuizPage = () => {
           </Col>
         </Row>
         <div className="w-full flex flex-col">
-          {quizDetails.map((val, index) => {
-            const title = (
-              <div>
-                <p className="text-2xl mb-8 font-semibold text-right text font-arabic break-normal whitespace-normal">
-                  {val.question}
-                </p>
-                <p className="text-2xl font-normal text-left break-normal whitespace-normal ">
-                  {val.english_question}
-                </p>
-              </div>
-            );
-            return (
-              <QuizQuestionCard
-                userTableReference={userBase}
-                userDetails={userDetails}
-                getUserDetails={getUserDetails}
-                title={title}
-                {...val}
-                key={val.id}
-              />
-            );
-          })}
+          {quizDetails.length > 0 ? (
+            quizDetails.map((val, index) => {
+              const title = (
+                <div>
+                  <p className="text-2xl mb-8 font-semibold text-right text font-arabic break-normal whitespace-normal">
+                    {val.question}
+                  </p>
+                  <p className="text-2xl font-normal text-left break-normal whitespace-normal ">
+                    {val.english_question}
+                  </p>
+                </div>
+              );
+              return (
+                <QuizQuestionCard
+                  userTableReference={userBase}
+                  userDetails={userDetails}
+                  getUserDetails={getUserDetails}
+                  title={title}
+                  {...val}
+                  key={val.id}
+                />
+              );
+            })
+          ) : (
+            <Result status="404" title="Quiz will begin shortly!" />
+          )}
         </div>
       </Content>
     </Layout>

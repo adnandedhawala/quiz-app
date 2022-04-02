@@ -38,8 +38,51 @@ const QuizPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log("userDetails", quizDetails);
-  }, [quizDetails]);
+    const id = setInterval(async () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const finalData = [];
+
+      const aTData = await userBase
+        .select({
+          view: "Grid view",
+          filterByFormula: `({its_id} = '${user.ITS_ID}')`,
+        })
+        .firstPage();
+      if (!aTData.length) {
+        message.info("quiz session has ended");
+        handleLogout();
+      } else {
+        setUserDetails({...aTData[0].fields, id: aTData[0].id});
+      }
+
+      await quizBase
+        .select({
+          maxRecords: 1200,
+          view: "Grid view",
+          filterByFormula: `({isActive} = 'yes')`,
+        })
+        .eachPage(
+          function page(records, fetchNextPage) {
+            records.forEach(function (record) {
+              finalData.push(record);
+            });
+
+            fetchNextPage();
+          },
+          function done(err) {
+            setQuizDetails(
+              finalData.map((val) => ({...val.fields, id: val.id}))
+            );
+
+            if (err) {
+              console.error(err);
+              return;
+            }
+          }
+        );
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
 
   const getUserDetails = async () => {
     setDisplayLoader(true);

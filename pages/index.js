@@ -1,6 +1,59 @@
+import {Card, Form, Input, message} from "antd";
+import {doc, getDoc} from "firebase/firestore";
 import Head from "next/head";
+import Image from "next/image";
+import {firestore} from "../firebase/firebaseConfig";
+import Airtable from "airtable";
 
-export default function Home() {
+var userAirtableBase = new Airtable({
+  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
+}).base("appGvUYRblYB4Inww");
+
+const userBase = userAirtableBase("Users");
+
+const Home = () => {
+  const [loginForm] = Form.useForm();
+
+  const onFinish = async (values) => {
+    const docRef = doc(firestore, "users_db", values.its);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      localStorage.setItem("user", JSON.stringify(data));
+      await addUserToAirtable(data);
+    } else {
+      message.error("User not found! Please check the its number entered");
+    }
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  const addUserToAirtable = async (data) => {
+    const aTData = await userBase
+      .select({
+        view: "Grid view",
+        filterByFormula: `({its_id} = '${data.ITS_ID}')`,
+      })
+      .firstPage();
+    if (!aTData.length) {
+      await userBase.create([
+        {
+          fields: {
+            its_id: data.ITS_ID.toString(),
+            name: data.Full_Name,
+            sector: data.Sector,
+          },
+        },
+      ]);
+    } else {
+      let data = {...aTData[0].fields, id: aTData[0].id};
+      console.log(data);
+    }
+  };
+
   return (
     <div className="min-h-screen overflow-y-auto ">
       <Head>
@@ -9,11 +62,46 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="text-2xl">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <main className="w-full p-4 min-h-screen overflow-y-auto bg-gray-300 flex items-center justify-center">
+        <Card className="w-full rounded-lg md:max-w-md">
+          <div className="w-full flex justify-center mb-4">
+            <Image src="/logo.png" alt="logo" width={125} height={125} />
+          </div>
+
+          <Form
+            name="login"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+            layout="vertical"
+            form={loginForm}
+          >
+            <Form.Item
+              label="ITS"
+              name="its"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your its!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item>
+              <button
+                className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 text-white p-2 rounded"
+                type="submit"
+              >
+                Login
+              </button>
+            </Form.Item>
+          </Form>
+        </Card>
       </main>
     </div>
   );
-}
+};
+
+export default Home;

@@ -137,7 +137,7 @@ const QuizPage = () => {
               <span>Mohallah:</span>
               <div>
                 {userDetails && userDetails.sector ? (
-                  <Tag color={getSectorColor(userDetails.sector)}>
+                  <Tag className="text-lg" color={getSectorColor(userDetails.sector)}>
                     {userDetails.sector}
                   </Tag>
                 ) : null}
@@ -175,6 +175,7 @@ const QuizPage = () => {
                   userTableReference={userBase}
                   userDetails={userDetails}
                   getUserDetails={getUserDetails}
+                  getQuizDetails={getQuizDetails}
                   title={title}
                   {...val}
                   key={val.id}

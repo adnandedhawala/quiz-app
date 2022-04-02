@@ -66,26 +66,26 @@ export const QuizQuestionCard = (props) => {
           <Space size="large" direction="vertical">
             <Radio value="option1">
               <div>
-                <p className="mb-2">{option1}</p>
-                <p>{english_option1}</p>
+                <p className="mb-2 text-lg">{option1}</p>
+                <p className="text-lg" >{english_option1}</p>
               </div>
             </Radio>
             <Radio value="option2">
               <div>
-                <p className="mb-2">{option2}</p>
-                <p>{english_option2}</p>
+                <p className="mb-2 text-lg">{option2}</p>
+                <p className="text-lg">{english_option2}</p>
               </div>
             </Radio>
             <Radio value="option3">
               <div>
-                <p className="mb-2">{option3}</p>
-                <p>{english_option3}</p>
+                <p className="mb-2 text-lg">{option3}</p>
+                <p className="text-lg">{english_option3}</p>
               </div>
             </Radio>
             <Radio value="option4">
               <div>
-                <p className="mb-2">{option4}</p>
-                <p>{english_option4}</p>
+                <p className="mb-2 text-lg">{option4}</p>
+                <p className="text-lg">{english_option4}</p>
               </div>
             </Radio>
           </Space>

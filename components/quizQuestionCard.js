@@ -67,7 +67,7 @@ export const QuizQuestionCard = (props) => {
             <Radio value="option1">
               <div>
                 <p className="mb-2 text-lg">{option1}</p>
-                <p className="text-lg" >{english_option1}</p>
+                <p className="text-lg">{english_option1}</p>
               </div>
             </Radio>
             <Radio value="option2">

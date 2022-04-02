@@ -137,7 +137,10 @@ const QuizPage = () => {
               <span>Mohallah:</span>
               <div>
                 {userDetails && userDetails.sector ? (
-                  <Tag className="text-lg" color={getSectorColor(userDetails.sector)}>
+                  <Tag
+                    className="text-lg"
+                    color={getSectorColor(userDetails.sector)}
+                  >
                     {userDetails.sector}
                   </Tag>
                 ) : null}

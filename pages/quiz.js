@@ -80,7 +80,7 @@ const QuizPage = () => {
             }
           }
         );
-    }, 5000);
+    }, 7000);
     return () => clearInterval(id);
   }, []);
 
@@ -211,7 +211,7 @@ const QuizPage = () => {
                   <p className="text-2xl mb-8 font-semibold text-right text font-arabic break-normal whitespace-normal">
                     {val.question}
                   </p>
-                  <p className="text-2xl font-normal text-left break-normal whitespace-normal ">
+                  <p className="text-2xl font-normal  text-left break-normal whitespace-normal ">
                     {val.english_question}
                   </p>
                 </div>

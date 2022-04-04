@@ -71,7 +71,7 @@ export const QuizQuestionCard = (props) => {
           <Space size="large" direction="vertical">
             <Radio value="option1">
               <div>
-                <p className="mb-2 text-lg">{option1}</p>
+                <p className="mb-2 text-xl font-arabic">{option1}</p>
                 <p className="text-lg">{english_option1}</p>
                 {isQuizTimeOver === "yes" && correct_option === "option1" ? (
                   <Tag
@@ -85,7 +85,7 @@ export const QuizQuestionCard = (props) => {
             </Radio>
             <Radio value="option2">
               <div>
-                <p className="mb-2 text-lg">{option2}</p>
+                <p className="mb-2 text-xl font-arabic">{option2}</p>
                 <p className="text-lg">{english_option2}</p>
                 {isQuizTimeOver === "yes" && correct_option === "option2" ? (
                   <Tag
@@ -99,7 +99,7 @@ export const QuizQuestionCard = (props) => {
             </Radio>
             <Radio value="option3">
               <div>
-                <p className="mb-2 text-lg">{option3}</p>
+                <p className="mb-2 text-xl font-arabic">{option3}</p>
                 <p className="text-lg">{english_option3}</p>
                 {isQuizTimeOver === "yes" && correct_option === "option3" ? (
                   <Tag
@@ -113,7 +113,7 @@ export const QuizQuestionCard = (props) => {
             </Radio>
             <Radio value="option4">
               <div>
-                <p className="mb-2 text-lg">{option4}</p>
+                <p className="mb-2 text-xl font-arabic">{option4}</p>
                 <p className="text-lg">{english_option4}</p>
                 {isQuizTimeOver === "yes" && correct_option === "option4" ? (
                   <Tag

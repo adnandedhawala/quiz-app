@@ -2,3 +2,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Alkanz";
+    src: url("/fonts/Al-Kanz_0.ttf");
+  }
+}

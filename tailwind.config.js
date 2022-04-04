@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        arabic: ["Noto Naskh Arabic", ...defaultTheme.fontFamily.sans],
+        arabic: ["Alkanz", ...defaultTheme.fontFamily.sans],
       },
     },
   },

@@ -41,15 +41,11 @@ export const QuizQuestionCard = (props) => {
     if (isQuizTimeOver === "yes") {
       message.error("Quiz timeout!");
     } else {
-      const initialScore = userDetails.score || 0;
-      const newScore =
-        radioValue === correct_option ? initialScore + 1 : initialScore;
       await userTableReference.update([
         {
           id: userDetails.id,
           fields: {
             [question_id + "_answer"]: radioValue,
-            score: newScore,
           },
         },
       ]);

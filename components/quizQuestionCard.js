@@ -55,8 +55,8 @@ export const QuizQuestionCard = (props) => {
       ]);
     }
     setIsSubmitting(false);
-    await getUserDetails();
-    await getQuizDetails();
+    // await getUserDetails();
+    // await getQuizDetails();
   };
 
   return (

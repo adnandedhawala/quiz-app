@@ -54,10 +54,11 @@ const Home = () => {
       })
       .firstPage();
 
-    const answersEntry = await correctAnswerBase.select({
-      view: "Grid view",
-    })
-    .firstPage();
+    const answersEntry = await correctAnswerBase
+      .select({
+        view: "Grid view",
+      })
+      .firstPage();
     if (!aTData.length) {
       await userBase.create([
         {
@@ -65,7 +66,7 @@ const Home = () => {
             its_id: data.ITS_ID.toString(),
             name: data.Full_Name,
             sector: data.Sector,
-            CorrectAnswers:[answersEntry[0].id]
+            CorrectAnswers: [answersEntry[0].id],
           },
         },
       ]);

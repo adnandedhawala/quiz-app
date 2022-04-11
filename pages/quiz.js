@@ -232,8 +232,8 @@ const QuizPage = () => {
               );
             })
           ) : (
-            <div className="w-auto h-48 mt-8">
-              <img src="/tilawat.png" alt="logo" />
+            <div className="w-auto h-48 mt-4">
+              <h1 className="text-center text-2xl font-medium" >Quiz will Begin Shortly!!</h1>
             </div>
             // <Result status="404" title="Quiz will begin shortly!" />
           )}

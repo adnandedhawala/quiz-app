@@ -204,6 +204,9 @@ const QuizPage = () => {
           ) : null}
         </Row>
         <div className="w-full flex flex-col">
+          <div className="w-auto h-48 my-4">
+            <img src="/tilawat.png" alt="logo" />
+          </div>
           {quizDetails.length > 0 ? (
             quizDetails.map((val, index) => {
               const title = (
@@ -229,7 +232,10 @@ const QuizPage = () => {
               );
             })
           ) : (
-            <Result status="404" title="Quiz will begin shortly!" />
+            <div className="w-auto h-48 mt-8">
+              <img src="/tilawat.png" alt="logo" />
+            </div>
+            // <Result status="404" title="Quiz will begin shortly!" />
           )}
         </div>
       </Content>

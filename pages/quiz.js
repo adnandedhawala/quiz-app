@@ -1,11 +1,11 @@
 import Airtable from "airtable";
-import {Col, Layout, message, Result, Row, Spin, Tag} from "antd";
+import { Col, Layout, message, Result, Row, Spin, Tag } from "antd";
 import Head from "next/head";
 import Image from "next/image";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import {QuizQuestionCard} from "../components/quizQuestionCard";
-import {getSectorColor} from "./api/utils";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { QuizQuestionCard } from "../components/quizQuestionCard";
+import { getSectorColor } from "./api/utils";
 
 var userAirtableBase = new Airtable({
   apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
@@ -18,7 +18,7 @@ var quizAirtableBase = new Airtable({
 const userBase = userAirtableBase("Users");
 const quizBase = quizAirtableBase("Quiz");
 
-const {Header, Content} = Layout;
+const { Header, Content } = Layout;
 
 const QuizPage = () => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const QuizPage = () => {
         message.info("quiz session has ended");
         handleLogout();
       } else {
-        setUserDetails({...aTData[0].fields, id: aTData[0].id});
+        setUserDetails({ ...aTData[0].fields, id: aTData[0].id });
       }
 
       await quizBase
@@ -71,7 +71,7 @@ const QuizPage = () => {
           },
           function done(err) {
             setQuizDetails(
-              finalData.map((val) => ({...val.fields, id: val.id}))
+              finalData.map((val) => ({ ...val.fields, id: val.id }))
             );
 
             if (err) {
@@ -98,7 +98,7 @@ const QuizPage = () => {
       message.info("quiz session has ended");
       handleLogout();
     } else {
-      setUserDetails({...aTData[0].fields, id: aTData[0].id});
+      setUserDetails({ ...aTData[0].fields, id: aTData[0].id });
       setDisplayLoader(false);
     }
   };
@@ -120,7 +120,7 @@ const QuizPage = () => {
           fetchNextPage();
         },
         function done(err) {
-          setQuizDetails(finalData.map((val) => ({...val.fields, id: val.id})));
+          setQuizDetails(finalData.map((val) => ({ ...val.fields, id: val.id })));
           setDisplayLoader(false);
 
           if (err) {
@@ -204,9 +204,12 @@ const QuizPage = () => {
           ) : null}
         </Row>
         <div className="w-full flex flex-col">
-          <div className="w-auto h-48 my-4">
-            <img src="/tilawat.png" alt="logo" />
-          </div>
+          <Row>
+            <Col xs={24}>
+              <img className="w-full h-auto my-4" src="/tilawat.png" alt="logo" />
+            </Col>
+          </Row>
+
           {quizDetails.length > 0 ? (
             quizDetails.map((val, index) => {
               const title = (
@@ -232,11 +235,22 @@ const QuizPage = () => {
               );
             })
           ) : (
-            <div className="w-auto h-48 mt-4">
-              <h1 className="text-center text-2xl font-medium">
-                Quiz will Begin Shortly!!
-              </h1>
-            </div>
+            <>
+              <Row gutter={[16, 16]} >
+                <Col xs={24}>
+                  <img className="w-full h-auto" src="/tilawat1.png" alt="logo" />
+                </Col>
+
+                <Col xs={24}>
+                  <img className="w-full h-auto" src="/tilawat2.png" alt="logo" />
+                </Col>
+              </Row>
+              <div className="w-auto h-48 mt-4">
+                <h1 className="text-center text-2xl font-medium">
+                  Quiz will Begin Shortly!!
+                </h1>
+              </div>
+            </>
             // <Result status="404" title="Quiz will begin shortly!" />
           )}
         </div>

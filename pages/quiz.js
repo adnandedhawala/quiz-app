@@ -80,7 +80,7 @@ const QuizPage = () => {
             }
           }
         );
-    }, 2000);
+    }, 11000);
     return () => clearInterval(id);
   }, []);
 

@@ -1,11 +1,11 @@
 import Airtable from "airtable";
-import {Col, Layout, message, Result, Row, Spin, Tag} from "antd";
+import { Col, Layout, message, Result, Row, Spin, Tag } from "antd";
 import Head from "next/head";
 import Image from "next/image";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import {QuizQuestionCard} from "../components/quizQuestionCard";
-import {getSectorColor} from "./api/utils";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { QuizQuestionCard } from "../components/quizQuestionCard";
+import { getSectorColor } from "./api/utils";
 
 var userAirtableBase = new Airtable({
   apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
@@ -18,7 +18,7 @@ var quizAirtableBase = new Airtable({
 const userBase = userAirtableBase("Users");
 const quizBase = quizAirtableBase("Quiz");
 
-const {Header, Content} = Layout;
+const { Header, Content } = Layout;
 
 const QuizPage = () => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const QuizPage = () => {
         message.info("quiz session has ended");
         handleLogout();
       } else {
-        setUserDetails({...aTData[0].fields, id: aTData[0].id});
+        setUserDetails({ ...aTData[0].fields, id: aTData[0].id });
       }
 
       await quizBase
@@ -71,7 +71,7 @@ const QuizPage = () => {
           },
           function done(err) {
             setQuizDetails(
-              finalData.map((val) => ({...val.fields, id: val.id}))
+              finalData.map((val) => ({ ...val.fields, id: val.id }))
             );
 
             if (err) {
@@ -80,8 +80,26 @@ const QuizPage = () => {
             }
           }
         );
-    }, 11000);
-    return () => clearInterval(id);
+    }, 10000);
+    const userId = setInterval(async () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const aTData = await userBase
+        .select({
+          view: "Grid view",
+          filterByFormula: `({its_id} = '${user.ITS_ID}')`,
+        })
+        .firstPage();
+      if (!aTData.length) {
+        message.info("quiz session has ended");
+        handleLogout();
+      } else {
+        setUserDetails({ ...aTData[0].fields, id: aTData[0].id });
+      }
+    }, 30000);
+    return () => {
+      clearInterval(id)
+      clearInterval(userId)
+    };
   }, []);
 
   const getUserDetails = async () => {
@@ -98,7 +116,7 @@ const QuizPage = () => {
       message.info("quiz session has ended");
       handleLogout();
     } else {
-      setUserDetails({...aTData[0].fields, id: aTData[0].id});
+      setUserDetails({ ...aTData[0].fields, id: aTData[0].id });
       setDisplayLoader(false);
     }
   };
@@ -120,7 +138,7 @@ const QuizPage = () => {
           fetchNextPage();
         },
         function done(err) {
-          setQuizDetails(finalData.map((val) => ({...val.fields, id: val.id})));
+          setQuizDetails(finalData.map((val) => ({ ...val.fields, id: val.id })));
           setDisplayLoader(false);
 
           if (err) {

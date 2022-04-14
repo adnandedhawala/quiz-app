@@ -60,13 +60,13 @@ const QuizPage = () => {
     }, 20000);
 
     const logoutId = setTimeout(async () => {
-      await handleLogout()
+      await handleLogout();
     }, 900000);
 
     return () => {
       clearInterval(userId);
       clearInterval(quizSettingsId);
-      clearTimeout(logoutId)
+      clearTimeout(logoutId);
     };
   }, []);
 
@@ -305,7 +305,8 @@ const QuizPage = () => {
                     />
                   );
                 })}
-                {userDetails.is_quiz_submitted || quizSettings.show_answers? null : (
+                {userDetails.is_quiz_submitted ||
+                quizSettings.show_answers ? null : (
                   <button
                     type="submit"
                     className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-4 px-4 border border-blue-700 rounded flex items-center justify-center text-2xl w-full my-8"

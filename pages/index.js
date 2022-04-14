@@ -1,18 +1,10 @@
 import {Card, Form, Input, message, Spin} from "antd";
-import {doc, getDoc} from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, setDoc} from "firebase/firestore";
 import Head from "next/head";
 import Image from "next/image";
 import {firestore} from "../firebase/firebaseConfig";
-import Airtable from "airtable";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
-
-var userAirtableBase = new Airtable({
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
-}).base("appGvUYRblYB4Inww");
-
-const userBase = userAirtableBase("Users");
-const correctAnswerBase = userAirtableBase("CorrectAnswers");
 
 const Home = () => {
   const [displayLoader, setDisplayLoader] = useState(false);
@@ -32,10 +24,21 @@ const Home = () => {
     const docRef = doc(firestore, "users_db", values.its);
     const docSnap = await getDoc(docRef);
 
+    // const quizSettings = {}
+    // const querySnapshot = await getDocs(collection(firestore, "quiz_settings"));
+    // querySnapshot.forEach((doc) => {
+    //   quizSettings = {
+    //     id: doc.id,
+    //     ...doc.data()
+    //   }
+    // });
+
+    // console.log("quiz_settings",quizSettings)
+
     if (docSnap.exists()) {
       const data = docSnap.data();
       localStorage.setItem("user", JSON.stringify(data));
-      await addUserToAirtable(data);
+      await addUserToQuizUsers(data);
     } else {
       message.error("User not found! Please check the its number entered");
       setDisplayLoader(false);
@@ -46,36 +49,22 @@ const Home = () => {
     console.log("Failed:", errorInfo);
   };
 
-  const addUserToAirtable = async (data) => {
-    const aTData = await userBase
-      .select({
-        view: "Grid view",
-        filterByFormula: `({its_id} = '${data.ITS_ID}')`,
-      })
-      .firstPage();
-
-    const answersEntry = await correctAnswerBase
-      .select({
-        view: "Grid view",
-      })
-      .firstPage();
-    if (!aTData.length) {
-      await userBase.create([
-        {
-          fields: {
-            its_id: data.ITS_ID.toString(),
-            name: data.Full_Name,
-            sector: data.Sector,
-            CorrectAnswers: [answersEntry[0].id],
-          },
-        },
-      ]);
+  const addUserToQuizUsers = async (data) => {
+    const docRef = doc(firestore, "quiz_user", String(data.ITS_ID));
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) {
+      await setDoc(doc(firestore, "quiz_user", String(data.ITS_ID)), {
+        ...data,
+        is_quiz_submitted: false,
+        score: 0,
+      });
       setDisplayLoader(false);
       router.push("/quiz");
     } else {
       router.push("/quiz");
       setDisplayLoader(false);
     }
+    setDisplayLoader(false);
   };
 
   return (

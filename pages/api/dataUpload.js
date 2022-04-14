@@ -1,7 +1,5 @@
-import {doc, setDoc} from "firebase/firestore";
 import formidable from "formidable";
 import XLSX from "xlsx";
-import {firestore} from "../../firebase/firebaseConfig";
 
 function formidablePromise(req, opts) {
   return new Promise((resolve, reject) => {

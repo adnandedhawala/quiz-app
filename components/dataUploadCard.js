@@ -6,7 +6,7 @@ import {doc, setDoc} from "firebase/firestore";
 
 const Dragger = Upload.Dragger;
 
-export const uploadFileDataToUsersDb = () => {
+export const UploadFileDataToUsersDb = () => {
   const [excelFile, setexcelFile] = useState(null);
 
   const draggerProps = {

@@ -5,7 +5,7 @@ import Image from "next/image";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {UploadFileDataToUsersDb} from "../../components/dataUploadCard";
-import { QuizUsersCard } from "../../components/quizUsersCard";
+import {QuizUsersCard} from "../../components/quizUsersCard";
 import {QuizSettingsCard} from "../../components/settingsCard";
 import {firestore} from "../../firebase/firebaseConfig";
 

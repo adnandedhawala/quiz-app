@@ -9,3 +9,13 @@
     src: url("/fonts/Al-Kanz_0.ttf");
   }
 }
+
+.zero-card-padding .ant-card-body {
+  padding: 0;
+}
+
+.flex-card .ant-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

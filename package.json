@@ -17,11 +17,13 @@
   "dependencies": {
     "airtable": "^0.11.3",
     "antd": "^4.19.3",
+    "chart.js": "^3.7.1",
     "firebase": "^9.6.10",
     "formidable": "^2.0.1",
     "lodash": "^4.17.21",
     "next": "12.1.4",
     "react": "18.0.0",
+    "react-chartjs-2": "^4.1.0",
     "react-csv": "^2.2.2",
     "react-dom": "18.0.0",
     "xlsx": "^0.18.5"

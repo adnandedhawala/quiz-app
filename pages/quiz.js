@@ -1,5 +1,5 @@
 import Airtable from "airtable";
-import {Col, Form, Layout, message, Result, Row, Spin, Tag} from "antd";
+import {Col, Form, Layout, message, Row, Spin, Tag} from "antd";
 import {
   collection,
   deleteDoc,
@@ -22,11 +22,6 @@ var quizAirtableBase = new Airtable({
   apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
 }).base("appz764hf49mnGmWd");
 
-var userAirtableBase = new Airtable({
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
-}).base("appGvUYRblYB4Inww");
-
-const userBase = userAirtableBase("Users");
 const quizBase = quizAirtableBase("Quiz");
 
 const {Header, Content} = Layout;
@@ -70,10 +65,6 @@ const QuizPage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(quizQuestions);
-  }, [quizQuestions]);
-
   const getUserDetails = async (showLoader) => {
     showLoader && setDisplayLoader(true);
     const user = JSON.parse(localStorage.getItem("user"));
@@ -82,7 +73,7 @@ const QuizPage = () => {
 
     if (!docSnap.exists()) {
       showLoader && setDisplayLoader(false);
-      message.info("quiz session has ended");
+      message.info("session timeout, please login again");
       handleLogout();
     } else {
       setUserDetails(docSnap.data());
@@ -340,7 +331,6 @@ const QuizPage = () => {
                   </h1>
                 </div>
               </>
-              // <Result status="404" title="Quiz will begin shortly!" />
             )}
           </Form>
         </div>

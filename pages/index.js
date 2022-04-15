@@ -1,5 +1,5 @@
 import {Card, Form, Input, message, Spin} from "antd";
-import {collection, doc, getDoc, getDocs, setDoc} from "firebase/firestore";
+import {doc, getDoc, setDoc} from "firebase/firestore";
 import Head from "next/head";
 import Image from "next/image";
 import {firestore} from "../firebase/firebaseConfig";
@@ -23,17 +23,6 @@ const Home = () => {
     setDisplayLoader(true);
     const docRef = doc(firestore, "users_db", values.its);
     const docSnap = await getDoc(docRef);
-
-    // const quizSettings = {}
-    // const querySnapshot = await getDocs(collection(firestore, "quiz_settings"));
-    // querySnapshot.forEach((doc) => {
-    //   quizSettings = {
-    //     id: doc.id,
-    //     ...doc.data()
-    //   }
-    // });
-
-    // console.log("quiz_settings",quizSettings)
 
     if (docSnap.exists()) {
       const data = docSnap.data();

@@ -27,6 +27,16 @@ const AdminStats = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const quizUsersId = setInterval(async () => {
+      await getQuizUsers();
+    }, 10000);
+
+    return () => {
+      clearInterval(quizUsersId);
+    };
+  }, []);
+
   const getUserDetails = async (showLoader) => {
     showLoader && setDisplayLoader(true);
     const user = JSON.parse(localStorage.getItem("user"));

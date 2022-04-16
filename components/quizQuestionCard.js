@@ -23,7 +23,7 @@ export const QuizQuestionCard = (props) => {
                   <div>
                     <p className="mb-2 text-xl font-arabic">{props[val]}</p>
                     <p className="text-lg">{props["english_" + val]}</p>
-                    {showAnswer && correct_option === props[val] ? (
+                    {showAnswer && correct_option === optionArr[index] ? (
                       <Tag
                         color="success"
                         className="text-lg rounded-full mt-2 py-1 px-3"

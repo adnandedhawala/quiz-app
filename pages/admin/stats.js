@@ -137,11 +137,11 @@ const AdminStats = () => {
               title="Age wise Participation"
               data={[
                 quizUsers.filter((user) => user.Age <= 20).length,
-                quizUsers.filter((user) => user.Age > 20 && user.Age <= 40)
+                quizUsers.filter((user) => user.Age > 20 && user.Age <= 35)
                   .length,
-                quizUsers.filter((user) => user.Age > 40).length,
+                quizUsers.filter((user) => user.Age > 35).length,
               ]}
-              labels={["Kids", "Youngsters", "Adults"]}
+              labels={["0-20", "21-35", "35+"]}
               backgroundColor={["#35d461", "#f9e104", "#882ff6"]}
               borderColor={["#35d461", "#f9e104", "#882ff6"]}
             />

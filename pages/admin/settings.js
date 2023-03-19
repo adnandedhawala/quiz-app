@@ -28,7 +28,7 @@ const AdminSettings = () => {
   const getUserDetails = async (showLoader) => {
     showLoader && setDisplayLoader(true);
     const user = JSON.parse(localStorage.getItem("user"));
-    const docRef = doc(firestore, "quiz_user", String(user.ITS_ID));
+    const docRef = doc(firestore, "quiz_user", String(user.its_id));
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {

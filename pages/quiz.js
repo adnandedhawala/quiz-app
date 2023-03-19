@@ -53,7 +53,7 @@ const QuizPage = () => {
   const getUserDetails = async (showLoader) => {
     showLoader && setDisplayLoader(true);
     const user = JSON.parse(localStorage.getItem("user"));
-    const docRef = doc(firestore, "quiz_user", String(user.ITS_ID));
+    const docRef = doc(firestore, "quiz_user", String(user.its_id));
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {
@@ -105,7 +105,7 @@ const QuizPage = () => {
     });
     let score = reduce(scoreArr, (sum, n) => sum + n, 0);
 
-    await updateDoc(doc(firestore, "quiz_user", String(userDetails.ITS_ID)), {
+    await updateDoc(doc(firestore, "quiz_user", String(userDetails.its_id)), {
       ...values,
       score: score,
       is_quiz_submitted: true,

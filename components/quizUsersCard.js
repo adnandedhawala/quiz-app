@@ -25,7 +25,7 @@ export const QuizUsersCard = () => {
   const handleDeleteAll = async () => {
     if (quizUsers.length > 0) {
       await quizUsers.map(async (val) => {
-        await deleteDoc(doc(firestore, "quiz_user", String(val.ITS_ID)));
+        await deleteDoc(doc(firestore, "quiz_user", String(val.its_id)));
       });
       await getQuizUsers();
       message.success("users deleted");

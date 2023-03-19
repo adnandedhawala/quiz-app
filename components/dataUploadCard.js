@@ -50,7 +50,7 @@ export const UploadFileDataToUsersDb = () => {
   const addDataToDb = async (fileData) => {
     // setDisplayLoader(true)
     fileData.map(async (val) => {
-      let id = String(val["ITS_ID"]);
+      let id = String(val["its_id"]);
       await setDoc(doc(firestore, "users_db", id), val);
       console.log("true");
       return true;

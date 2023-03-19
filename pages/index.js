@@ -39,10 +39,10 @@ const Home = () => {
   };
 
   const addUserToQuizUsers = async (data) => {
-    const docRef = doc(firestore, "quiz_user", String(data.ITS_ID));
+    const docRef = doc(firestore, "quiz_user", String(data.its_id));
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) {
-      await setDoc(doc(firestore, "quiz_user", String(data.ITS_ID)), {
+      await setDoc(doc(firestore, "quiz_user", String(data.its_id)), {
         ...data,
         is_quiz_submitted: false,
         score: 0,

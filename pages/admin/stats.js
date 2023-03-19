@@ -40,7 +40,7 @@ const AdminStats = () => {
   const getUserDetails = async (showLoader) => {
     showLoader && setDisplayLoader(true);
     const user = JSON.parse(localStorage.getItem("user"));
-    const docRef = doc(firestore, "quiz_user", String(user.ITS_ID));
+    const docRef = doc(firestore, "quiz_user", String(user.its_id));
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {
@@ -146,7 +146,7 @@ const AdminStats = () => {
               borderColor={["#35d461", "#f9e104", "#882ff6"]}
             />
           </Col>
-          <Col xs={8}>
+          {/* <Col xs={8}>
             <PieChartCard
               title="Score Chart"
               data={[
@@ -175,7 +175,7 @@ const AdminStats = () => {
                 "#f8b9d4",
               ]}
             />
-          </Col>
+          </Col> */}
         </Row>
       </Content>
     </Layout>

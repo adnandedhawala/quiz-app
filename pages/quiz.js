@@ -158,12 +158,12 @@ const QuizPage = () => {
             <div className="flex flex-col">
               <span>Mohallah:</span>
               <div>
-                {userDetails && userDetails.Sector ? (
+                {userDetails && userDetails.sector ? (
                   <Tag
                     className="text-lg"
-                    color={getSectorColor(userDetails.Sector)}
+                    color={getSectorColor(userDetails.sector)}
                   >
-                    {userDetails.Sector}
+                    {userDetails.sector}
                   </Tag>
                 ) : null}
               </div>

@@ -115,7 +115,7 @@ const AdminStats = () => {
               <StatsCard
                 label={getMohallahName(val)}
                 size="small"
-                count={quizUsers.filter((user) => user.Sector === val).length}
+                count={quizUsers.filter((user) => user.sector === val).length}
                 color={getSectorColor(val)}
               />
             </Col>
@@ -123,8 +123,8 @@ const AdminStats = () => {
           <Col xs={8}>
             <PieChartCard
               data={[
-                quizUsers.filter((user) => user.Gender === "Male").length,
-                quizUsers.filter((user) => user.Gender === "Female").length,
+                quizUsers.filter((user) => user.gender === "Male").length,
+                quizUsers.filter((user) => user.gender === "Female").length,
               ]}
               labels={["Male", "Female"]}
               backgroundColor={["#6ca0dc", "#f8b9d4"]}
@@ -136,17 +136,17 @@ const AdminStats = () => {
             <PieChartCard
               title="Age wise Participation"
               data={[
-                quizUsers.filter((user) => user.Age <= 20).length,
-                quizUsers.filter((user) => user.Age > 20 && user.Age <= 35)
+                quizUsers.filter((user) => user.age <= 20).length,
+                quizUsers.filter((user) => user.age > 20 && user.age <= 35)
                   .length,
-                quizUsers.filter((user) => user.Age > 35).length,
+                quizUsers.filter((user) => user.age > 35).length,
               ]}
               labels={["0-20", "21-35", "35+"]}
               backgroundColor={["#35d461", "#f9e104", "#882ff6"]}
               borderColor={["#35d461", "#f9e104", "#882ff6"]}
             />
           </Col>
-          {/* <Col xs={8}>
+          <Col xs={8}>
             <PieChartCard
               title="Score Chart"
               data={[
@@ -175,7 +175,7 @@ const AdminStats = () => {
                 "#f8b9d4",
               ]}
             />
-          </Col> */}
+          </Col>
         </Row>
       </Content>
     </Layout>

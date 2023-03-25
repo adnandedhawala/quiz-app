@@ -77,13 +77,13 @@ const AdminSettings = () => {
       ) : null}
       <Content className="flex-grow pt-20 min-h-screen overflow-y-auto px-4">
         <Row gutter={[24, 24]} className="mt-8">
-          <Col xs={12}>
+          <Col xs={24} md={12}>
             <UploadFileDataToUsersDb />
           </Col>
-          <Col xs={12}>
+          <Col xs={24} md={12} >
             <QuizSettingsCard />
           </Col>
-          <Col xs={12}>
+          <Col xs={24} md={12} >
             <QuizUsersCard />
           </Col>
         </Row>

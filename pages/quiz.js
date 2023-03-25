@@ -148,8 +148,8 @@ const QuizPage = () => {
             <div className="flex flex-col">
               <span>Name:</span>
               <p className="text-lg">
-                {userDetails && userDetails.Full_Name
-                  ? userDetails.Full_Name
+                {userDetails && userDetails.full_Name
+                  ? userDetails.full_Name
                   : ""}
               </p>
             </div>

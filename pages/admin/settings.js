@@ -80,10 +80,10 @@ const AdminSettings = () => {
           <Col xs={24} md={12}>
             <UploadFileDataToUsersDb />
           </Col>
-          <Col xs={24} md={12} >
+          <Col xs={24} md={12}>
             <QuizSettingsCard />
           </Col>
-          <Col xs={24} md={12} >
+          <Col xs={24} md={12}>
             <QuizUsersCard />
           </Col>
         </Row>

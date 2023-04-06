@@ -1,15 +1,15 @@
-import {Col, Layout, message, Row, Spin} from "antd";
-import {collection, doc, getDoc, getDocs} from "firebase/firestore";
+import { Col, Layout, message, Row, Spin } from "antd";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import Head from "next/head";
 import Image from "next/image";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import {PieChartCard} from "../../components/pieChartCard";
-import {StatsCard} from "../../components/statsCard";
-import {firestore} from "../../firebase/firebaseConfig";
-import {getMohallahName, getSectorColor, mohallahList} from "../api/utils";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { PieChartCard } from "../../components/pieChartCard";
+import { StatsCard } from "../../components/statsCard";
+import { firestore } from "../../firebase/firebaseConfig";
+import { getMohallahName, getSectorColor, mohallahList } from "../api/utils";
 
-const {Header, Content} = Layout;
+const { Header, Content } = Layout;
 
 const AdminStats = () => {
   const router = useRouter();
@@ -156,8 +156,10 @@ const AdminStats = () => {
                 quizUsers.filter((user) => user.score === 3).length,
                 quizUsers.filter((user) => user.score === 4).length,
                 quizUsers.filter((user) => user.score === 5).length,
+                quizUsers.filter((user) => user.score === 6).length,
+                quizUsers.filter((user) => user.score === 7).length,
               ]}
-              labels={["0", "1", "2", "3", "4", "5"]}
+              labels={["0", "1", "2", "3", "4", "5", "6", "7"]}
               backgroundColor={[
                 "#d4d4d4",
                 "#35d461",
@@ -165,6 +167,8 @@ const AdminStats = () => {
                 "#882ff6",
                 "#6ca0dc",
                 "#f8b9d4",
+                "#A9D18E",
+                "#C55A11",
               ]}
               borderColor={[
                 "#d4d4d4",
@@ -173,6 +177,8 @@ const AdminStats = () => {
                 "#882ff6",
                 "#6ca0dc",
                 "#f8b9d4",
+                "#A9D18E",
+                "#C55A11",
               ]}
             />
           </Col>

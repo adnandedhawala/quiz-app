@@ -1,15 +1,15 @@
-import { Col, Layout, message, Row, Spin } from "antd";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {Col, Layout, message, Row, Spin} from "antd";
+import {collection, doc, getDoc, getDocs} from "firebase/firestore";
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { PieChartCard } from "../../components/pieChartCard";
-import { StatsCard } from "../../components/statsCard";
-import { firestore } from "../../firebase/firebaseConfig";
-import { getMohallahName, getSectorColor, mohallahList } from "../api/utils";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
+import {PieChartCard} from "../../components/pieChartCard";
+import {StatsCard} from "../../components/statsCard";
+import {firestore} from "../../firebase/firebaseConfig";
+import {getMohallahName, getSectorColor, mohallahList} from "../api/utils";
 
-const { Header, Content } = Layout;
+const {Header, Content} = Layout;
 
 const AdminStats = () => {
   const router = useRouter();
